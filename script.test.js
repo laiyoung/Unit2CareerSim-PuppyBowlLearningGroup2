@@ -27,7 +27,6 @@ describe("fetchAllPlayers", () => {
   });
 });
 
-
 // TODO: Tests for `fetchSinglePlayer`
 describe("fetchSinglePlayer", () => {
   let player = fetchSinglePlayer();
@@ -35,21 +34,59 @@ describe("fetchSinglePlayer", () => {
     expect(Object.isObject(player)).toBe(true);
   });
 
-test("returns player with name, id, image, and details", async () => {
-  expect(player).toHaveProperty("name");
-  expect(player).toHaveProperty("id");
-  expect(player).toHaveProperty("breed");
-  expect(player).toHaveProperty("image");
-  expect(player).toHaveProperty("team");
-});
+  test("returns player with name, id, image, and details", async () => {
+    expect(player).toHaveProperty("name");
+    expect(player).toHaveProperty("id");
+    expect(player).toHaveProperty("breed");
+    expect(player).toHaveProperty("image");
+    expect(player).toHaveProperty("team");
+  });
 });
 
 // TODO: Tests for `addNewPlayer`
+describe("addNewPlayer", () => {
+  let player = addNewPlayer();
+  test("adds an object", async () => {
+    expect(Object.isObject(player)).toBe(true);
+  });
+  test("adds a player with name, id, image, and details", async () => {
+    players.push((player) => {
+      expect(player).toHaveProperty("name");
+      expect(player).toHaveProperty("id");
+      expect(player).toHaveProperty("breed");
+      expect(player).toHaveProperty("image");
+      expect(player).toHaveProperty("team");
+    });
+    test("returns an updated array", async () => {
+      expect(Array.isArray(players)).toBe(true);
+    });
 
-renderAllPlayers();
+    renderAllPlayers();
+  });
+});
 // (Optional) TODO: Tests for `removePlayer`
+describe("removePlayer", () => {
+  let player = removePlayer();
+  test("remove an object", async () => {
+    expect(Object.isObject(player)).toBe(true);
+  });
+  test("removes a player with name, id, image, and details", async () => {
+    players.pop((player) => {
+      expect(player).toHaveProperty("name");
+      expect(player).toHaveProperty("id");
+      expect(player).toHaveProperty("breed");
+      expect(player).toHaveProperty("image");
+      expect(player).toHaveProperty("team");
+    });
+    removePlayer();
+    test("returns an updated array", async () => {
+      expect(Array.isArray(players)).toBe(true);
+    });
 
-renderAllPlayers();
+    renderAllPlayers();
+  });
+});
+
 /** Syncs state with the API and rerenders */
 async function renderAllPlayers() {
   // console.log("Inside render");
