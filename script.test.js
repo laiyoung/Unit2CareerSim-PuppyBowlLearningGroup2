@@ -28,6 +28,18 @@ describe("fetchAllPlayers", () => {
 });
 
 // TODO: Tests for `fetchSinglePlayer`
+describe("fetchSinglePlayer", () => {
+test("returns an array", async () => {
+  expect(Array.isArray(players)).toBe(true);
+});
+
+test("returns players with name and id", async () => {
+  players.forEach((player) => {
+    expect(player).toHaveProperty("name");
+    expect(player).toHaveProperty("id");
+  });
+});
+});
 
 // TODO: Tests for `addNewPlayer`
 
